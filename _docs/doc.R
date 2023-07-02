@@ -25,7 +25,9 @@ ggplot(count_tab, aes(x = grade, y = count, fill = grade)) +
   scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
   theme(legend.position = "none") +
   geom_text(data = percent_tbl, aes(x = grade, y = count + 1, label = label)) +
-  geom_vline(xintercept = 10.5, linetype = 2)
+  geom_vline(xintercept = 10.5, linetype = 2) +
+  annotate("label", 9, max(count_tab$count), 
+           label = str_c("n = ", nrow(grade_tbl)), size = 7)
   
 ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density.png"),
        width = 9, height = 6)
