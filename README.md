@@ -4,7 +4,7 @@
 
 Hier findest du alle Klausuren nach Jahr und Semester aufgeteilt über alle Studiengänge. Da es pro Klausur immer mal mehrere Versionen geben kann, gibt es natürlich auch mehrere Dateien für eine Klausur. Dazu kommen dann noch die Probeklausren, wenn ich dran denke die Probeklausuren hochzuladen. Dadurch das es sich hier um ein Archiv handelt sind natürlich die Klausurfragen in der Form nicht mehr aktuell.
 
-## Notenspiegel 
+## Notenspiegel über alle Veranstaltungen
 
 ![](_docs/density.png)
 
