@@ -27,7 +27,5 @@ ggplot(count_tab, aes(x = grade, y = count, fill = grade)) +
   geom_text(data = percent_tbl, aes(x = grade, y = count + 1, label = label)) +
   geom_vline(xintercept = 10.5, linetype = 2)
   
-
 ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density.png"),
        width = 9, height = 6)
-  
