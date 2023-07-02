@@ -17,7 +17,7 @@ count_tab <- grade_tbl %>%
   mutate(count = as.numeric(count),
          label = count/nrow(grade_tbl),
          label = as.vector(label),
-         label = scales::percent(label))
+         label = scales::percent(label, accuracy = 0.1))
 
 ggplot(count_tab, aes(x = grade, y = count, fill = grade)) +
   theme_minimal() + 
