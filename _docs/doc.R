@@ -9,13 +9,25 @@ cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73",
 grade_tbl <- read_excel(file.path(path_home(), "Documents/GitHub/archive/_docs/grades.xlsx")) %>% 
   mutate(grade = as.character(grade))
 
-ggplot(grade_tbl, aes(x = grade, fill = grade)) +
+
+count_tab <- grade_tbl %>% 
+  pull(grade) %>% 
+  table() %>% 
+  enframe(name = "grade", value = "count") %>% 
+  mutate(label = count/nrow(grade_tbl),
+         label = as.vector(label),
+         label = scales::percent(label))
+
+ggplot(count_tab, aes(x = grade, y = count, fill = grade)) +
   theme_minimal() + 
-  geom_bar(stat = "count") +
+  geom_bar(stat = "identity") +
   labs(x = "Note", y = "Anzahl") +
   scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  geom_text(data = percent_tbl, aes(x = grade, y = count + 1, label = label)) +
+  geom_vline(xintercept = 10.5, linetype = 2)
   
 
-ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density.png"))
+ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density.png"),
+       width = 9, height = 6)
   
