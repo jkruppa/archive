@@ -6,7 +6,5 @@ Hier findest du alle Klausuren nach Jahr und Semester aufgeteilt über alle Stud
 
 ## Notenspiegel 
 
-Hier einmal der Notenspiegel über *alle* meine Veranstaltungen. Ich trenne hier nicht nach den Modulen auf.
-
 ![](_docs/density.png)
 
