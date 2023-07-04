@@ -22,13 +22,15 @@ count_tab <- grade_tbl %>%
 ggplot(count_tab, aes(x = grade, y = count, fill = grade)) +
   theme_minimal() + 
   geom_bar(stat = "identity") +
-  labs(x = "Note", y = "Anzahl") +
+  labs(x = "", y = "Anzahl") +
   scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
-  theme(legend.position = "none") +
+  theme(legend.position = "none",
+        axis.text.x = element_text(face="bold", size=11),
+        axis.text.y = element_text(face="bold", size=11)) +
   geom_text(aes(x = grade, y = count + 1, label = label)) +
   geom_vline(xintercept = 10.5, linetype = 2) +
   annotate("label", 9.5, max(count_tab$count), 
            label = str_c("n = ", nrow(grade_tbl)), size = 7)
   
 ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density.png"),
-       width = 9, height = 6)
+       width = 7, height = 5)
