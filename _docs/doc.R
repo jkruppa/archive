@@ -21,7 +21,7 @@ count_tbl <- grade_tbl %>%
 ggplot(count_tab, aes(x = grade, y = count, fill = grade)) +
   theme_minimal() + 
   geom_bar(stat = "identity") +
-  labs(x = "", y = "Anzahl") +
+  labs(x = "", y = "") +
   scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
   theme(legend.position = "none",
         axis.text.x = element_text(size=14),
