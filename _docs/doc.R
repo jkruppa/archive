@@ -72,5 +72,5 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
              fill = "white")
 
 ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density_year.png"),
-       width = 9, height = 6)
+       width = 9, height = 9)
 
