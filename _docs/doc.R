@@ -18,7 +18,7 @@ count_tbl <- grade_tbl %>%
          label = as.vector(label),
          label = scales::percent(label))
 
-ggplot(count_tab, aes(x = grade, y = count, fill = grade)) +
+ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
   theme_minimal() + 
   geom_bar(stat = "identity") +
   labs(x = "", y = "") +
