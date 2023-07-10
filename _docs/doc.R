@@ -1,6 +1,6 @@
 ## ------------------------------------------------------------
 pacman::p_load(tidyverse, readxl, fs, ggridges,
-               conflicted, see)
+               conflicted, see, janitor)
 conflicts_prefer(purrr::discard)
 cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", 
                 "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
@@ -37,3 +37,40 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
   
 ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density.png"),
        width = 9, height = 6)
+
+
+count_year_tbl <- grade_tbl %>%
+  mutate(grade = as.numeric(grade)) %>% 
+  group_by(year) %>% 
+  reframe(percent = tabyl(grade)) %>% 
+  unnest(cols = c("percent"))
+
+count_year_sum_tbl <- grade_tbl %>% 
+  group_by(year) %>% 
+  summarise(sum_n = str_c("n = ", n())) %>% 
+  mutate(grade = "1",
+         n = 45)
+
+ggplot(count_year_tbl, aes(as.character(grade), n, 
+                           fill = as.character(grade))) +
+  theme_minimal() + 
+  geom_bar(stat = "identity") +
+  facet_wrap(~ year, ncol = 1) +
+  labs(x = "", y = "",
+       caption = "Die Durchfallquote bezieht sich auf abgegebene und somit geschriebene Klausuren.") +
+  scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
+  geom_vline(xintercept = 10.5, linetype = 2) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(size=14),
+        axis.text.y = element_blank(),
+        strip.text = element_text(size=14)) +
+  geom_text(data = count_year_tbl, aes(x = as.character(grade), 
+                                       y = n + 5, 
+                                       label = scales::percent(percent, accuracy = 0.1)),
+            size = 4) +
+  geom_label(data = count_year_sum_tbl, aes(grade, n, label = sum_n),
+             fill = "white")
+
+ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density_year.png"),
+       width = 9, height = 6)
+
