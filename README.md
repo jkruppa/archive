@@ -1,4 +1,4 @@
-*Wenn du auf dem Handy schaust, dann klicke oben auf 'Show code' um dir die Ordner mit den Klausuren anzeigen zu lassen.*
+*Wenn du auf dem Handy schaust, dann klicke oben auf 'View code' um dir die Ordner mit den Klausuren anzeigen zu lassen.*
 
 # Das Archiv
 
