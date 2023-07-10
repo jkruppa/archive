@@ -21,7 +21,8 @@ count_tbl <- grade_tbl %>%
 ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
   theme_minimal() + 
   geom_bar(stat = "identity") +
-  labs(x = "", y = "") +
+  labs(x = "", y = "",
+       caption = "Die Durchfallquote bezieht sich auf abgegebene und somit geschriebene Klausuren.") +
   scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
   theme(legend.position = "none",
         axis.text.x = element_text(size=14),
@@ -30,7 +31,9 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
             size = 5) +
   geom_vline(xintercept = 10.5, linetype = 2) +
   annotate("label", x = 9.5, y = max(count_tbl$count), label = str_c("n = ", nrow(grade_tbl)),
-           size = 8)
+           size = 8) +
+  scale_y_continuous(breaks = seq(0, max(count_tbl$count) + 10, 10), 
+                     limits = c(0,  max(count_tbl$count) + 10)) 
   
 ggsave(file.path(path_home(), "Documents/GitHub/archive/_docs/density.png"),
        width = 9, height = 6)
