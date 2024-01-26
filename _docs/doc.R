@@ -64,13 +64,13 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
         axis.text.x = element_text(size=14),
         axis.text.y = element_blank(),
         strip.text = element_text(size=14)) +
-  geom_text(data = count_year_tbl, aes(x = as.character(grade), 
+  geom_label(data = count_year_tbl, aes(x = as.character(grade), 
                                        y = n + 5, 
                                        label = scales::percent(percent, accuracy = 0.1)),
-            size = 4) +
+            size = 6, fill = "white") +
   geom_label(data = count_year_sum_tbl, aes(grade, n, label = sum_n),
-             fill = "white")
+             fill = "white", size = 8)
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.png"),
-       width = 9, height = (nrow(count_year_sum_tbl) * 3))
+       width = 9, height = (nrow(count_year_sum_tbl) * 2))
 
