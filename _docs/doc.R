@@ -36,7 +36,7 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
                      limits = c(0,  max(count_tbl$count) + 10)) 
   
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density.png"),
-       width = 9, height = 6)
+       width = 4, height = 3)
 
 
 count_year_tbl <- grade_tbl %>%
@@ -72,5 +72,5 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
              fill = "white", size = 8)
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.png"),
-       width = 9, height = (nrow(count_year_sum_tbl) * 2))
+       width = 6, height = (nrow(count_year_sum_tbl) * 1.5))
 
