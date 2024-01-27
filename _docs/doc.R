@@ -68,9 +68,9 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
                                        y = n,
                                        label = scales::percent(percent, accuracy = 0.1)),
             size = 6, vjust = "bottom") +
-  scale_y_continuous(expand = c(0.3, 0))+
-  geom_label(data = count_year_sum_tbl, aes(grade, n/4, label = sum_n),
-             fill = "white", size = 5.5)
+  scale_y_continuous(expand = c(0.3, 0))#+
+  #geom_label(data = count_year_sum_tbl, aes(grade, n/4, label = sum_n),
+  #           fill = "white", size = 5.5)
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
        width = 9, height = (nrow(count_year_sum_tbl) * 3), units = "cm")
