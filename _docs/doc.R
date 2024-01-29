@@ -75,3 +75,40 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
        width = 9, height = (nrow(count_year_sum_tbl) * 3), units = "cm")
 
+count_module_tbl <- grade_tbl %>%
+  filter(module != "Spezielle Statistik und Versuchswesen") |> 
+  mutate(grade = as.numeric(grade)) %>% 
+  group_by(module) %>% 
+  reframe(percent = tabyl(grade)) %>% 
+  unnest(cols = c("percent"))
+
+count_module_sum_tbl <- grade_tbl %>% 
+  filter(module != "Spezielle Statistik und Versuchswesen") |> 
+  group_by(module) %>% 
+  summarise(sum_n = str_c("n = ", n()),
+            n = n()) %>% 
+  mutate(grade = "1")
+
+ggplot(count_module_tbl, aes(as.character(grade), n, 
+                           fill = as.character(grade))) +
+  theme_minimal() + 
+  geom_bar(stat = "identity") +
+  facet_wrap(~ module, ncol = 1, scales = "free_y") +
+  labs(x = "", y = "",
+       caption = "Die Durchfallquote bezieht sich auf abgegebene und somit geschriebene Klausuren.") +
+  scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
+  geom_vline(xintercept = 10.5, linetype = 2) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(size=14),
+        axis.text.y = element_blank(),
+        strip.text = element_text(size=14)) +
+  geom_text(data = count_module_tbl, aes(x = as.character(grade), 
+                                       y = n,
+                                       label = scales::percent(percent, accuracy = 0.1)),
+            size = 6, vjust = "bottom") +
+  scale_y_continuous(expand = c(0.3, 0)) +
+  geom_label(data = count_module_sum_tbl, aes(grade, n/3, label = sum_n),
+             fill = "white", size = 5.5)
+
+ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_module.jpg"),
+       width = 9, height = 12, units = "cm")
