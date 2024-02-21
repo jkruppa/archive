@@ -47,8 +47,8 @@ count_year_tbl <- grade_tbl %>%
 
 count_year_sum_tbl <- grade_tbl %>% 
   group_by(year) %>% 
-  summarise(sum_n = str_c("n = ", n()),
-            n = n()) %>% 
+  summarise(sum_n = str_c("n = ", nrow(grade_tbl)),
+            n = nrow(grade_tbl)) %>% 
   mutate(grade = "1")
 
 ggplot(count_year_tbl, aes(as.character(grade), n, 
@@ -73,7 +73,7 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
   #           fill = "white", size = 5.5)
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
-       width = 9, height = (nrow(count_year_sum_tbl) * 3), units = "cm")
+       width = 9, height = 9, units = "cm")
 
 count_module_tbl <- grade_tbl %>%
   filter(module != "Spezielle Statistik und Versuchswesen") |> 
@@ -85,8 +85,8 @@ count_module_tbl <- grade_tbl %>%
 count_module_sum_tbl <- grade_tbl %>% 
   filter(module != "Spezielle Statistik und Versuchswesen") |> 
   group_by(module) %>% 
-  summarise(sum_n = str_c("n = ", n()),
-            n = n()) %>% 
+  summarise(sum_n = str_c("n = ", nrow(grade_tbl)),
+            n = nrow(grade_tbl)) %>% 
   mutate(grade = "1")
 
 ggplot(count_module_tbl, aes(as.character(grade), n, 
