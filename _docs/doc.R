@@ -35,8 +35,8 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
   scale_y_continuous(breaks = seq(0, max(count_tbl$count) + 10, 10), 
                      limits = c(0,  max(count_tbl$count) + 10)) 
   
-ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density.jpg"),
-       width = 8, height = 5, units = "cm")
+ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density.png"),
+       width = 7, height = 5, units = "cm", dpi = 320, bg = "white")
 
 
 count_year_tbl <- grade_tbl %>%

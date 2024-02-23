@@ -8,7 +8,7 @@ Hier findest du alle Klausuren nach Jahr und Semester aufgeteilt über alle Stud
 
 ## Notenspiegel über alle Veranstaltungen
 
-![](_docs/density.jpg)
+![](_docs/density.png)
 
 ## Notenspiegel über alle Veranstaltungen und Jahre
 
