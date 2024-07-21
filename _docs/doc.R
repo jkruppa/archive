@@ -2,6 +2,9 @@
 pacman::p_load(tidyverse, readxl, fs, ggridges,
                conflicted, see, janitor)
 conflicts_prefer(purrr::discard)
+conflicts_prefer(dplyr::mutate)
+conflicts_prefer(dplyr::summarise)
+conflicts_prefer(dplyr::filter)
 cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", 
                 "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 ## ------------------------------------------------------------
@@ -73,7 +76,7 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
   #           fill = "white", size = 5.5)
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
-       width = 9, height = 9, units = "cm")
+       width = 9, height = 12, units = "cm")
 
 count_module_tbl <- grade_tbl %>%
   filter(module != "Spezielle Statistik und Versuchswesen") |> 
