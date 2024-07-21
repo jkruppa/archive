@@ -30,7 +30,7 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
   theme(legend.position = "none",
         axis.text.x = element_text(size=14),
         axis.text.y = element_text(size=14)) +
-  geom_text(data = count_tbl, aes(x = grade, y = count + 3, label = label),
+  geom_text(data = count_tbl, aes(x = grade, y = count + 5, label = label),
             size = 5, fill = "white") +
   geom_vline(xintercept = 10.5, linetype = 2) +
   annotate("label", x = 9.5, y = max(count_tbl$count), label = str_c("n = ", nrow(grade_tbl)),
@@ -39,7 +39,7 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
                      limits = c(0,  max(count_tbl$count) + 10)) 
   
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density.png"),
-       width = 7, height = 5, units = "cm", dpi = 320, bg = "white")
+       width = 18, height = 12, units = "cm", dpi = 320, bg = "white")
 
 
 count_year_tbl <- grade_tbl %>%
@@ -68,7 +68,7 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
         axis.text.y = element_blank(),
         strip.text = element_text(size=14)) +
   geom_text(data = count_year_tbl, aes(x = as.character(grade), 
-                                       y = n,
+                                       y = n + 1,
                                        label = scales::percent(percent, accuracy = 0.1)),
             size = 6, vjust = "bottom") +
   scale_y_continuous(expand = c(0.3, 0))#+
@@ -76,7 +76,7 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
   #           fill = "white", size = 5.5)
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
-       width = 9, height = 12, units = "cm")
+       width = 22, height = 26, units = "cm")
 
 count_module_tbl <- grade_tbl %>%
   filter(module != "Spezielle Statistik und Versuchswesen") |> 
@@ -114,4 +114,4 @@ ggplot(count_module_tbl, aes(as.character(grade), n,
              fill = "white", size = 5.5)
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_module.jpg"),
-       width = 9, height = 12, units = "cm")
+       width = 22, height = 26, units = "cm")
