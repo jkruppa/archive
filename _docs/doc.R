@@ -42,6 +42,36 @@ ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density.png"),
        width = 18, height = 12, units = "cm", dpi = 320, bg = "white")
 
 
+year_grade_tbl <- grade_tbl %>%
+  mutate(grade = as.numeric(grade)) %>% 
+  group_by(year) |> 
+  summarise(mean = mean(grade)) 
+
+cbind(year_grade_tbl,
+      count_year_tbl |> 
+        filter(grade == 5) |> 
+        select(percent)) |> 
+  mutate(year = as_factor(year),
+         percent = round(percent, 3),
+         mean = round(mean, 2) - 1) |> 
+  ggplot(aes(year, mean, group = 1)) +
+  theme_minimal() +
+  geom_point() +
+  geom_line() +
+  geom_label(aes(label = mean+1), position = position_nudge(y = 0.2)) +
+  scale_y_continuous(limits = c(0, 3), 
+                     sec.axis = sec_axis(trans = ~ ./3, name = "Durchfallquote"),
+                     labels = c(1:4)) +
+  geom_bar(aes(y = percent), stat = "identity") +
+  geom_text(aes(y = percent, label = scales::percent(percent)), position = position_nudge(y = 0.2)) +  
+  labs(x = "", y = "Notendurchschnitt")
+
+ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
+       width = 18, height = 12, units = "cm", dpi = 320, bg = "white")
+
+## old stuff
+
+
 count_year_tbl <- grade_tbl %>%
   mutate(grade = as.numeric(grade)) %>% 
   group_by(year) %>% 
@@ -72,8 +102,8 @@ ggplot(count_year_tbl, aes(as.character(grade), n,
                                        label = scales::percent(percent, accuracy = 0.1)),
             size = 6, vjust = "bottom") +
   scale_y_continuous(expand = c(0.3, 0))#+
-  #geom_label(data = count_year_sum_tbl, aes(grade, n/4, label = sum_n),
-  #           fill = "white", size = 5.5)
+#geom_label(data = count_year_sum_tbl, aes(grade, n/4, label = sum_n),
+#           fill = "white", size = 5.5)
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
        width = 22, height = 26, units = "cm")
