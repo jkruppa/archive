@@ -44,6 +44,7 @@ ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density.png"),
 
 year_grade_tbl <- grade_tbl %>%
   mutate(grade = as.numeric(grade)) %>% 
+  # filter(grade != 5) |> 
   group_by(year) |> 
   summarise(mean = mean(grade)) 
 
