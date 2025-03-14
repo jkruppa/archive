@@ -58,11 +58,12 @@ cbind(year_grade_tbl,
   theme_minimal() +
   geom_point() +
   geom_line() +
-  geom_label(aes(label = mean+1), position = position_nudge(y = 0.2)) +
+  geom_label(aes(label = mean+1), position = position_nudge(y = 0.2),
+             fill = "#56B4E9", alpha = 0.75) +
   scale_y_continuous(limits = c(0, 3), 
                      sec.axis = sec_axis(trans = ~ ./3, name = "Durchfallquote"),
                      labels = c(1:4)) +
-  geom_bar(aes(y = percent), stat = "identity") +
+  geom_bar(aes(y = percent), stat = "identity", fill = "#CC79A7") +
   geom_text(aes(y = percent, label = scales::percent(percent)), position = position_nudge(y = 0.2)) +  
   labs(x = "", y = "Notendurchschnitt")
 
