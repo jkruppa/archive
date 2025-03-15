@@ -61,10 +61,10 @@ cbind(year_grade_tbl,
   geom_hline(yintercept = 2.7-1, color = "gray50") +
   geom_point(color = "#56B4E9") +
   geom_line(color = "#56B4E9") +
-  geom_label(aes(label = mean+1), position = position_nudge(y = 0.15),
-             fill = "#56B4E9", alpha = 0.75) +
   geom_line(aes(y = median), linetype = 11, color = "#E69F00") +
   geom_point(aes(y = median), shape = 18, size = 3, color = "#E69F00") +
+  geom_label(aes(label = mean+1), position = position_nudge(y = 0.15),
+             fill = "#56B4E9", alpha = 0.75) +
   geom_label(aes(label = median+1, y = median), position = position_nudge(y = -.15),
              fill = "#E69F00", alpha = 0.75) +
   scale_y_continuous(limits = c(0, 3), 
