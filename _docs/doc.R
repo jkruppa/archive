@@ -58,6 +58,7 @@ cbind(year_grade_tbl,
          mean = round(mean, 2) - 1) |> 
   ggplot(aes(year, mean, group = 1)) +
   theme_minimal() +
+  geom_hline(yintercept = 2.7-1, color = "gray50") +
   geom_point(color = "#56B4E9") +
   geom_line(color = "#56B4E9") +
   geom_label(aes(label = mean+1), position = position_nudge(y = 0.15),
@@ -68,10 +69,12 @@ cbind(year_grade_tbl,
              fill = "#E69F00", alpha = 0.75) +
   scale_y_continuous(limits = c(0, 3), 
                      sec.axis = sec_axis(trans = ~ ./3, name = "Durchfallquote"),
-                     labels = c(1:4)) +
+                     labels = c(1, 1.3, 1.7, 2, 2.3, 2.7, 3, 3.3, 3.7, 4.0),
+                     breaks = c(1, 1.3, 1.7, 2, 2.3, 2.7, 3, 3.3, 3.7, 4.0)-1) +
   geom_bar(aes(y = percent), stat = "identity", fill = "#CC79A7") +
   geom_text(aes(y = percent, label = scales::percent(percent)), position = position_nudge(y = 0.15)) +  
-  labs(x = "", y = "Notendurchschnitt")
+  labs(x = "", y = "Note") +
+  theme(panel.grid.minor.y = element_blank())
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
        width = 18, height = 12, units = "cm", dpi = 320, bg = "white")
