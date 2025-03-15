@@ -29,7 +29,8 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
   scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
   theme(legend.position = "none",
         axis.text.x = element_text(size=14),
-        axis.text.y = element_text(size=14),
+        axis.text.y = element_blank(),
+        panel.grid.major.y = element_blank(),        
         panel.grid.minor.y = element_blank()) +
   geom_text(data = count_tbl, aes(x = grade, y = count + 5, label = label),
             size = 5, fill = "white") +
