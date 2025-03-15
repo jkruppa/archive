@@ -29,7 +29,8 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
   scale_fill_manual(values = c(rep("#56B4E9", 10), "#CC79A7")) +
   theme(legend.position = "none",
         axis.text.x = element_text(size=14),
-        axis.text.y = element_text(size=14)) +
+        axis.text.y = element_text(size=14),
+        panel.grid.minor.y = element_blank()) +
   geom_text(data = count_tbl, aes(x = grade, y = count + 5, label = label),
             size = 5, fill = "white") +
   geom_vline(xintercept = 10.5, linetype = 2) +
@@ -68,13 +69,14 @@ cbind(year_grade_tbl,
   geom_label(aes(label = median+1, y = median), position = position_nudge(y = -.15),
              fill = "#E69F00", alpha = 0.75) +
   scale_y_continuous(limits = c(0, 3), 
-                     sec.axis = sec_axis(trans = ~ ./3, name = "Durchfallquote"),
                      labels = c(1, 1.3, 1.7, 2, 2.3, 2.7, 3, 3.3, 3.7, 4.0),
                      breaks = c(1, 1.3, 1.7, 2, 2.3, 2.7, 3, 3.3, 3.7, 4.0)-1) +
   geom_bar(aes(y = percent), stat = "identity", fill = "#CC79A7") +
   geom_text(aes(y = percent, label = scales::percent(percent)), position = position_nudge(y = 0.15)) +  
   labs(x = "", y = "Note") +
-  theme(panel.grid.minor.y = element_blank())
+  theme(panel.grid.minor.y = element_blank(),
+        axis.text.x = element_text(size=14),
+        axis.text.y = element_text(size=14))
 
 ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
        width = 18, height = 12, units = "cm", dpi = 320, bg = "white")
