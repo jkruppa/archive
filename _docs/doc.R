@@ -51,6 +51,12 @@ year_grade_tbl <- grade_tbl %>%
   summarise(mean = mean(grade),
             median = median(grade)-1) 
 
+count_year_tbl <- grade_tbl %>%
+  mutate(grade = as.numeric(grade)) %>% 
+  group_by(year) %>% 
+  reframe(percent = tabyl(grade)) %>% 
+  unnest(cols = c("percent"))
+
 cbind(year_grade_tbl,
       count_year_tbl |> 
         filter(grade == 5) |> 
