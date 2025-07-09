@@ -80,7 +80,7 @@ cbind(year_grade_tbl,
                      breaks = c(1, 1.3, 1.7, 2, 2.3, 2.7, 3, 3.3, 3.7, 4.0)-1) +
   geom_bar(aes(y = percent), stat = "identity", fill = "#CC79A7") +
   geom_text(aes(y = percent, label = scales::percent(percent)), position = position_nudge(y = 0.15)) +  
-  labs(x = "", y = "Note") +
+  labs(x = "", y = "") +
   theme(panel.grid.minor.y = element_blank(),
         axis.text.x = element_text(size=14),
         axis.text.y = element_text(size=14))
