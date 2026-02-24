@@ -89,6 +89,7 @@ ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
        width = 18, height = 12, units = "cm", dpi = 320, bg = "white")
 
 
+
 grade_tbl %>%
   group_by(year, module) |> 
   summarise(n()) |> 
