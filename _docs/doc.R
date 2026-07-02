@@ -9,7 +9,7 @@ cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73",
                 "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 ## ------------------------------------------------------------
 
-grade_tbl <- read_excel(file.path(path_home(), "work/GitHub/archive/_docs/grades.xlsx")) %>% 
+grade_tbl <- read_excel(file.path(path_home(), "GitHub/archive/_docs/grades.xlsx")) %>% 
   mutate(grade = as.character(grade))
 
 
@@ -40,7 +40,7 @@ ggplot(count_tbl, aes(x = grade, y = count, fill = grade)) +
   scale_y_continuous(breaks = seq(0, max(count_tbl$count) + 10, 10), 
                      limits = c(0,  max(count_tbl$count) + 10)) 
   
-ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density.png"),
+ggsave(file.path(path_home(), "GitHub/archive/_docs/density.png"),
        width = 18, height = 12, units = "cm", dpi = 320, bg = "white")
 
 
@@ -85,7 +85,7 @@ cbind(year_grade_tbl,
         axis.text.x = element_text(size=14),
         axis.text.y = element_text(size=14))
 
-ggsave(file.path(path_home(), "work/GitHub/archive/_docs/density_year.jpg"),
+ggsave(file.path(path_home(), "GitHub/archive/_docs/density_year.jpg"),
        width = 18, height = 12, units = "cm", dpi = 320, bg = "white")
 
 
